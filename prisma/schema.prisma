@@ -9,6 +9,49 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+enum Rol {
+  ADMIN
+  VENDEDOR
+  SOPORTE
+}
+
+model Usuario {
+  id        Int        @id @default(autoincrement())
+  nombre    String
+  email     String     @unique
+  rol       Rol        @default(VENDEDOR)
+  password  String
+  contactos Contacto[] @relation("UsuarioContactos")
+}
+
+model Contacto {
+  id          Int           @id @default(autoincrement())
+  nombre      String
+  email       String        @unique
+  telefono    String?
+  empresaId   Int?
+  empresa     Empresa?      @relation(fields: [empresaId], references: [id], name: "EmpresaContactos")
+  usuarioId   Int?
+  usuario     Usuario?      @relation(fields: [usuarioId], references: [id], name: "UsuarioContactos")
+  Interaccion Interaccion[]
+}
+
+model Empresa {
+  id        Int        @id @default(autoincrement())
+  nombre    String
+  sector    String?
+  direccion String?
+  contactos Contacto[] @relation("EmpresaContactos")
+}
+
+model Interaccion {
+  id         Int      @id @default(autoincrement())
+  tipo       String // Ejemplo: 'llamada', 'email', 'reunión'
+  fecha      DateTime @default(now())
+  contactoId Int
+  contacto   Contacto @relation(fields: [contactoId], references: [id])
 }
