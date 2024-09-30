@@ -26,6 +26,8 @@ model Usuario {
   rol       Rol        @default(VENDEDOR)
   password  String
   contactos Contacto[] @relation("UsuarioContactos")
+  createdAt     DateTime @default(now()) // Fecha de creación
+  updatedAt     DateTime @updatedAt // Fecha de actualización
 }
 
 model Contacto {
@@ -38,6 +40,8 @@ model Contacto {
   usuarioId   Int?
   usuario     Usuario?      @relation(fields: [usuarioId], references: [id], name: "UsuarioContactos")
   Interaccion Interaccion[]
+  createdAt     DateTime @default(now()) // Fecha de creación
+  updatedAt     DateTime @updatedAt // Fecha de actualización
 }
 
 model Empresa {
@@ -46,6 +50,8 @@ model Empresa {
   sector    String?
   direccion String?
   contactos Contacto[] @relation("EmpresaContactos")
+  createdAt     DateTime @default(now()) // Fecha de creación
+  updatedAt     DateTime @updatedAt // Fecha de actualización
 }
 
 model Interaccion {
@@ -54,4 +60,16 @@ model Interaccion {
   fecha      DateTime @default(now())
   contactoId Int
   contacto   Contacto @relation(fields: [contactoId], references: [id])
+  mensajes   Mensaje[] // Relación uno a muchos con Mensaje
+  createdAt     DateTime @default(now()) // Fecha de creación
+  updatedAt     DateTime @updatedAt // Fecha de actualización
+}
+
+model Mensaje {
+  id              Int        @id @default(autoincrement())
+  texto           String
+  interaccionId   Int
+  interaccion     Interaccion @relation(fields: [interaccionId], references: [id]) // Relación con Interaccion
+  createdAt     DateTime @default(now()) // Fecha de creación
+  updatedAt     DateTime @updatedAt // Fecha de actualización
 }
