@@ -73,3 +73,13 @@ model Mensaje {
   createdAt     DateTime @default(now()) // Fecha de creación
   updatedAt     DateTime @updatedAt // Fecha de actualización
 }
+
+model HeroImage {
+  id          Int      @id @default(autoincrement())
+  imagePath   String   // Ruta de la imagen
+  title       String?  // Título opcional de la imagen
+  description String?  // Descripción opcional
+  isActive    Boolean  @default(true) // Indica si la imagen está activa
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt @default(now())
+}
