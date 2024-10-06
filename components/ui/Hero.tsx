@@ -35,8 +35,8 @@ export const Hero = () => {
         setTimeout(() => {
           setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
           setFadeIn(true);
-        }, 1000); // Duración del fade out antes de cambiar la imagen
-      }, 5000); // Intervalo de tiempo para cada cambio de imagen
+        }, 900); // Duración del fade out antes de cambiar la imagen
+      }, 7000); 
 
       return () => clearInterval(interval);
     }, [images.length]);
@@ -70,7 +70,7 @@ export const Hero = () => {
       
       <h1 className="text-4xl md:text-6xl font-bold mb-4">PROJECT + BIM</h1>
       <p className="text-lg md:text-xl max-w-md mb-6">
-        Creamos tus pensamientos en 3DS.
+        Creamos tus pensamientos en 3D.
       </p>
       <a
         href="#about"
