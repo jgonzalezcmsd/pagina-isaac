@@ -46,7 +46,7 @@ model Contacto {
 
 model Empresa {
   id        Int        @id @default(autoincrement())
-  nombre    String
+  nombre    String     @unique
   sector    String?
   direccion String?
   contactos Contacto[] @relation("EmpresaContactos")
@@ -82,4 +82,12 @@ model HeroImage {
   isActive    Boolean  @default(true) // Indica si la imagen está activa
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt @default(now())
+}
+
+model Proyecto {
+  id        Int      @id @default(autoincrement())
+  nombre    String
+  imagenUrl String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
 }

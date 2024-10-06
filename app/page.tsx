@@ -1,5 +1,5 @@
 
-import { About, ContactForm, Footer, Hero } from '../components/index';
+import { About, ContactForm, Footer, Hero, Projects } from '../components/index';
 
 export default function Home() {
 
@@ -11,13 +11,17 @@ export default function Home() {
         <section id="hero" className="col md:w-full ">
           <Hero />
         </section>
-        <section id="about" className='col md:w-full ' >
+        <section id="services" className='col md:w-full ' >
           <About />
+        </section>
+        <section id="projects" className="col md:w-full" >
+            <Projects />
         </section>
         <section id="contact" className="col md:w-full" >
           <ContactForm />
           
         </section>
+        
       </main>
       <Footer />
     </div>

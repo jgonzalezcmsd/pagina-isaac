@@ -104,3 +104,18 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* styles/globals.css */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* styles/globals.css */
+.scroll-container {
+  scroll-behavior: smooth; /* Efecto suave para desplazamiento */
+}
