@@ -1,5 +1,6 @@
 "use client"
 import axios from 'axios';
+import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react'
 
 interface Proyecto {
@@ -58,7 +59,7 @@ export const Projects = () => {
     >
       {proyectos.map((proyecto) => (
         <div key={proyecto.id} className="min-w-[300px] max-w-[400px] bg-gray-300 rounded-lg shadow-md overflow-hidden relative group">
-          <img src={proyecto.imagenUrl} alt={proyecto.nombre} className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105" />
+          <Image src={proyecto.imagenUrl} alt={proyecto.nombre} width={400} height={400} className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105" />
           <h3 className="absolute inset-0 flex items-center justify-center font-semibold text-white bg-black bg-opacity-60 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-2xl">
             {proyecto.nombre}
           </h3>

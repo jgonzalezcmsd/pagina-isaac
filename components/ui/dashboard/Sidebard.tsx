@@ -33,12 +33,6 @@ const Sidebard = () => {
                     </li>
                     <li className="mb-3">
                         <Link href="/messages" className="flex items-center p-2 hover:bg-gray-700 rounded">
-                            <MailIcon className="h-6 w-6 mr-2" />
-                            Mensajes
-                        </Link>
-                    </li>
-                    <li className="mb-3">
-                        <Link href="/messages" className="flex items-center p-2 hover:bg-gray-700 rounded">
                             <PhotographIcon className="h-6 w-6 mr-2" />
                             Imagenes Portada
                         </Link>

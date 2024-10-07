@@ -37,12 +37,13 @@ export const ContactForm = () => {
         company: data.company,
         message: data.message,
       });
-
+      
+      // Feature bloqueada por el host momentaneamente
       // Aquí envías un correo de confirmación
-      await axios.post('/api/send-confirmation-email', {
-        email: data.email,
-        name: data.name,
-      });
+      // await axios.post('/api/send-confirmation-email', {
+      //   email: data.email,
+      //   name: data.name,
+      // });
 
       // Oculta el formulario y muestra un mensaje de agradecimiento
       setFormVisible(false);

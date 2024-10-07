@@ -8,9 +8,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Configura el transportador de correo
     const transporter = nodemailer.createTransport({
-      host: 'smtp.mail.ovh.ca', // Dirección de tu servidor SMTP
-      port: 587, // o el puerto que uses
-      secure: false, // true para 465, false para otros puertos
+      host: process.env.EMAIL_HOST, // Dirección de tu servidor SMTP
+      port: 465, // o el puerto que uses
+      secure: true, // true para 465, false para otros puertos
       auth: {
         user: process.env.EMAIL_USER, // Tu usuario SMTP
         pass: process.env.EMAIL_PASS, // Tu contraseña SMTP

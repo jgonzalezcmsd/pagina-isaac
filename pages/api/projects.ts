@@ -8,7 +8,11 @@ const prisma = new PrismaClient();
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     try {
-      const proyectos = await prisma.proyecto.findMany();
+      const proyectos = await prisma.proyecto.findMany(
+        {
+          where: { isActive: true },
+        }
+      );
       res.status(200).json(proyectos);
     } catch (error) {
       console.error("Error al obtener proyectos:", error);
