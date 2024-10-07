@@ -1,9 +1,6 @@
 "use client"
-import { getImagesFromDir } from '@/helpers';
 import { Navbar } from './Navbar';
-import path from 'path';
 import React, { useEffect, useState } from 'react'
-import { getActiveHeroImages } from '@/helpers/imageHelper';
 
 export const Hero = () => {
 
@@ -35,7 +32,7 @@ export const Hero = () => {
         setTimeout(() => {
           setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
           setFadeIn(true);
-        }, 900); // Duración del fade out antes de cambiar la imagen
+        }, 100); // Duración del fade out antes de cambiar la imagen
       }, 7000); 
 
       return () => clearInterval(interval);
@@ -51,7 +48,7 @@ export const Hero = () => {
     <img
       src={images[currentImageIndex]}
       alt="Background"
-      className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${
+      className={`absolute top-0 left-0 w-full h-full object-cover transition-shadow duration-1000 ${
         fadeIn ? 'opacity-100' : 'opacity-0'
       }`}
     />

@@ -1,5 +1,8 @@
-import { GlobeAltIcon, CurrencyDollarIcon, DeviceTabletIcon, PencilIcon } from '@heroicons/react/16/solid'
-import { Pencil1Icon } from '@radix-ui/react-icons'
+
+import CurrencyDollarIcon from '@heroicons/react/outline/CurrencyDollarIcon'
+import DeviceTabletIcon from '@heroicons/react/outline/DeviceTabletIcon'
+import GlobeAltIcon from '@heroicons/react/outline/GlobeAltIcon'
+import PencilIcon from '@heroicons/react/outline/PencilIcon'
 import React from 'react'
 
 export const About = () => {

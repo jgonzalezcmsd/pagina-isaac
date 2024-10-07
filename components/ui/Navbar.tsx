@@ -42,6 +42,7 @@ export const Navbar = () => {
             <a href="#services" className="text-white hover:text-blue-500">Servicios</a>
             <a href="#projects" className="text-white hover:text-blue-500">Proyectos</a>
             <a href="#contact" className="text-white hover:text-blue-500">Contacto</a>
+            <a href="/login" className="text-white hover:text-blue-500">Administrador</a>
           </div>
         </div>
       </nav>
