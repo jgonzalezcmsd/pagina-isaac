@@ -10,7 +10,7 @@ const Sidebard = () => {
         await signOut({ redirect: true }); // Cierra sesión y redirige al login
       };
   return (
-    <div className="w-1/6 h-screen bg-gray-800 text-white p-5">
+    <div className="w-1/6  bg-gray-800 text-white p-5">
     <div className="flex items-center mb-5">
         <Link href="/admin" >
             <img src="/assets/logos/Logo-sin-fondo.png" alt="Logo" className="h-10 w-10 mr-2" />

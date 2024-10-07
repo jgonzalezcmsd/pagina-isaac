@@ -130,6 +130,7 @@ model Proyecto {
   id        Int      @id @default(autoincrement())
   nombre    String
   imagenUrl String
+  isActive  Boolean @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt @default(now())
 }
