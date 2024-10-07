@@ -6,7 +6,10 @@ export const Footer = () => {
     <footer className="bg-gray-900 text-white py-6">
     <div className="container mx-auto flex flex-col items-center">
       {/* Logo centrado */}
-      <Image src="/assets/logos/Logo-sin-fondo.png" alt="Logo" className="w-32 h-auto mb-4" />
+      <Image src="/assets/logos/Logo-sin-fondo.png" alt="Logo" 
+      width={100} height={100}
+      className="w-32 h-auto mb-4" 
+      />
       
       <div className="text-center mb-4">
         <h5 className="text-lg font-bold">Project + BIM</h5>

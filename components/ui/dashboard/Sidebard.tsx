@@ -11,10 +11,10 @@ const Sidebard = () => {
         await signOut({ redirect: true }); // Cierra sesión y redirige al login
       };
   return (
-    <div className="w-1/6  bg-gray-800 text-white p-5">
+    <div className="w-10/6  bg-gray-800 text-white p-5">
     <div className="flex items-center mb-5">
         <Link href="/admin" >
-            <Image src="/assets/logos/Logo-sin-fondo.png" alt="Logo" className="h-10 w-10 mr-2" />
+            <Image src="/assets/logos/Logo-sin-fondo.png" alt="Logo"  width={40} height={40} className="h-10 w-10 mr-2" />
             <h1 className="text-xl font-bold">Dashboard</h1>
         </Link>
     </div>
@@ -25,18 +25,21 @@ const Sidebard = () => {
                             <PresentationChartBarIcon className="h-6 w-6 mr-2" />
                             Proyectos
                         </Link>
+                        <hr />
                     </li>
                     <li className="mb-3">
                         <Link href="/admin/contactos" className="flex items-center p-2 hover:bg-gray-700 rounded">
                             <UserIcon className="h-6 w-6 mr-2" />
                             Contacto
                         </Link>
+                        <hr />
                     </li>
                     <li className="mb-3">
                         <Link href="/messages" className="flex items-center p-2 hover:bg-gray-700 rounded">
                             <PhotographIcon className="h-6 w-6 mr-2" />
                             Imagenes Portada
                         </Link>
+                        <hr />
                     </li>
                 </ul>
             </nav>
@@ -44,7 +47,7 @@ const Sidebard = () => {
             <div className="mt-auto p-2">
                 <button 
                 onClick={handleLogout} 
-                className="flex items-center p-2 hover:bg-red-600 rounded w-full"
+                className="flex items-center p-2 bg-red-700 hover:bg-red-600 rounded w-full"
                 >
                 <span className="mr-2">Cerrar Sesión</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -46,7 +46,7 @@ export const Hero = () => {
     {/* Navbar */}
     <Navbar />
     {/* Image Background */}
-    <Image
+    <img
       src={images[currentImageIndex]}
       alt="Background"
       className={`absolute top-0 left-0 w-full h-full object-cover transition-shadow duration-1000 ${
@@ -63,6 +63,8 @@ export const Hero = () => {
       <Image 
         src="/assets/logos/Logo-sin-fondo.png" 
         alt="Logo" 
+        width={300}
+        height={300}
         className="w-32 h-auto mb-4 md:w-48" 
       />
       

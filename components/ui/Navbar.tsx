@@ -33,6 +33,8 @@ export const Navbar = () => {
             <Image
               src="/assets/logos/Logo-sin-fondo.png" // Cambia esta ruta a la ruta de tu imagen
               alt="Logo"
+              width={40}
+              height={40}
               className="h-10"
             />
             <span className="text-white text-xl font-bold ml-2">Project+BIM</span>
