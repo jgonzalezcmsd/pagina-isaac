@@ -2,13 +2,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import { Button } from "@/components/ui/button"; // Asegúrate de tener el botón de ShadCN
 import { Pencil1Icon } from "@radix-ui/react-icons";
 import EditProjectModal from "@/components/maintainer/EditProjectModal";
 import AddProjectModal from "../../../../components/maintainer/AddProjectModal";
 import Image from 'next/image';
-import { useRouter } from "next/navigation";
 
 interface Proyecto {
   id: number;
@@ -18,7 +16,6 @@ interface Proyecto {
 }
 
 const Proyectos = () => {
-  const router = useRouter();
   const [selectedProject, setSelectedProject] = useState<Proyecto | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);

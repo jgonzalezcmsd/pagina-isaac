@@ -3,11 +3,6 @@ import { useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogOverlay, DialogTitle } from '../ui/dialog';
 import { Button } from '../ui/button';
 
-interface Proyecto {
-  id: string;
-  nombre: string;
-  activo: boolean;
-}
 
 const EditProjectModal = ({ project, isOpen, onClose }) => {
   const [nombre, setNombre] = useState(project.nombre);

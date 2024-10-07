@@ -1,11 +1,12 @@
 import React from 'react'
+import Image from 'next/image';
 
 export const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-6">
     <div className="container mx-auto flex flex-col items-center">
       {/* Logo centrado */}
-      <img src="/assets/logos/Logo-sin-fondo.png" alt="Logo" className="w-32 h-auto mb-4" />
+      <Image src="/assets/logos/Logo-sin-fondo.png" alt="Logo" className="w-32 h-auto mb-4" />
       
       <div className="text-center mb-4">
         <h5 className="text-lg font-bold">Project + BIM</h5>

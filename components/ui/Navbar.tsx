@@ -1,5 +1,6 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -29,7 +30,7 @@ export const Navbar = () => {
       >
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center">
-            <img
+            <Image
               src="/assets/logos/Logo-sin-fondo.png" // Cambia esta ruta a la ruta de tu imagen
               alt="Logo"
               className="h-10"

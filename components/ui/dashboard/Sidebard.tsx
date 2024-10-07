@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import React from 'react';
-import { MailIcon, PhotographIcon, PresentationChartBarIcon, UserIcon } from '@heroicons/react/outline';
+import { PhotographIcon, PresentationChartBarIcon, UserIcon } from '@heroicons/react/outline';
 import { signOut } from 'next-auth/react';
+import Image from 'next/image';
 
 
 const Sidebard = () => {
@@ -13,7 +14,7 @@ const Sidebard = () => {
     <div className="w-1/6  bg-gray-800 text-white p-5">
     <div className="flex items-center mb-5">
         <Link href="/admin" >
-            <img src="/assets/logos/Logo-sin-fondo.png" alt="Logo" className="h-10 w-10 mr-2" />
+            <Image src="/assets/logos/Logo-sin-fondo.png" alt="Logo" className="h-10 w-10 mr-2" />
             <h1 className="text-xl font-bold">Dashboard</h1>
         </Link>
     </div>

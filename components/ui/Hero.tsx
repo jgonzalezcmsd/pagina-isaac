@@ -1,6 +1,7 @@
 "use client"
 import { Navbar } from './Navbar';
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image';
 
 export const Hero = () => {
 
@@ -45,7 +46,7 @@ export const Hero = () => {
     {/* Navbar */}
     <Navbar />
     {/* Image Background */}
-    <img
+    <Image
       src={images[currentImageIndex]}
       alt="Background"
       className={`absolute top-0 left-0 w-full h-full object-cover transition-shadow duration-1000 ${
@@ -59,7 +60,7 @@ export const Hero = () => {
     {/* Hero Content */}
     <div className="relative z-20 flex flex-col items-center justify-center text-center text-white h-full px-4">
       {/* Logo */}
-      <img 
+      <Image 
         src="/assets/logos/Logo-sin-fondo.png" 
         alt="Logo" 
         className="w-32 h-auto mb-4 md:w-48" 

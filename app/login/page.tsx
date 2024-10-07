@@ -2,7 +2,8 @@
 import { SessionProvider, signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'; // Asegúrate de importar useRouter
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import Image from 'next/image';
 
 
 const Login = () => {
@@ -50,9 +51,9 @@ const Login = () => {
     <div className="bg-gray-900 rounded-lg shadow-lg p-8 w-96">
         {/* Logo */}
         <div className="mb-6 flex justify-center">
-            <img
-                src="/assets/logos/Logo-sin-fondo.png" // Asegúrate de que el nombre y la ruta del logo son correctos
-                alt="Logo"
+            <Image
+                src={"/assets/logos/Logo-sin-fondo.png"} // Asegúrate de que el nombre y la ruta del logo son correctos
+                alt={"Logo"}
                 width={120} // Cambia el tamaño según sea necesario
                 height={40}
                 className="rounded-md"
