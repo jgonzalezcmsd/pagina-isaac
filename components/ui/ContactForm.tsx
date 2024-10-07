@@ -63,14 +63,15 @@ export const ContactForm = () => {
         {formVisible ? (
           <div className={`transition-opacity duration-500 ${!formVisible ? 'opacity-0' : 'opacity-100'}`}>
             <h2 className="text-3xl font-bold text-center mb-6">¡Contáctanos!</h2>
-            <p className="text-lg text-center mb-4">
-              Estamos aquí para ayudarte con tus proyectos. Completa el formulario y
-              nos pondremos en contacto contigo.
-            </p>
+
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col space-y-4 max-w-md mx-auto"
             >
+              <p className="text-lg text-center mb-4">
+                Estamos aquí para ayudarte con tus proyectos. Completa el formulario y
+                nos pondremos en contacto contigo.
+              </p>
               <div>
                 <Input
                   {...register("name")}

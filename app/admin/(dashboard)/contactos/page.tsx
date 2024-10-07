@@ -75,7 +75,7 @@ interface Mensaje {
             </div>
 
             <div className="mt-4">
-              <h4 className="font-semibold text-lg text-gray-800 mb-3">
+              <h4 className="font-semibold text-lg text-gray-900 mb-3">
                 Interacciones
               </h4>
               <div className="space-y-3">
@@ -84,9 +84,9 @@ interface Mensaje {
                     key={interaccion.id}
                     className="p-4 bg-gray-50 border rounded-md"
                   >
-                    <p className="font-semibold text-gray-800">
+                    {/* <p className="font-semibold text-gray-800">
                       {interaccion.tipo}
-                    </p>
+                    </p> */}
                     <p className="text-gray-500 text-xs">
                       {new Date(interaccion.fecha).toLocaleString()}
                     </p>

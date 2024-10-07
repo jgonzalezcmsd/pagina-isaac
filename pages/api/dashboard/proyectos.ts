@@ -1,4 +1,4 @@
-// pages/api/dashboard/proyectos.ts
+
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import formidable, { Fields, Files } from 'formidable';

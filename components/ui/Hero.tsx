@@ -49,7 +49,7 @@ export const Hero = () => {
     <img
       src={images[currentImageIndex]}
       alt="Background"
-      className={`absolute top-0 left-0 w-full h-full object-cover transition-shadow duration-1000 ${
+      className={`absolute top-0 left-0 w-full h-full object-cover transition-opcaity duration-500 ${
         fadeIn ? 'opacity-100' : 'opacity-0'
       }`}
     />

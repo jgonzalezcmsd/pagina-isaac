@@ -54,13 +54,13 @@ export const Projects = () => {
     <h2 className="text-3xl font-bold text-center mb-6 text-white">Nuestros Proyectos</h2>
     <div 
     ref={scrollRef}    
-    className="flex overflow-x-auto scrollbar-hide  scroll-container space-x-4 "
+    className="flex {proyectos.length <5 ? justify-center : justify-between}   overflow-x-auto scrollbar-hide  scroll-container space-x-4"
     onMouseDown={handleMouseDown}
     >
       {proyectos.map((proyecto) => (
-        <div key={proyecto.id} className="min-w-[300px] max-w-[400px] bg-gray-300 rounded-lg shadow-md overflow-hidden relative group">
+        <div key={proyecto.id} className="min-w-[400px] max-w-[400px] bg-gray-300 rounded-lg shadow-md overflow-hidden relative group ">
           <Image src={proyecto.imagenUrl} alt={proyecto.nombre} width={400} height={400} className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105" />
-          <h3 className="absolute inset-0 flex items-center justify-center font-semibold text-white bg-black bg-opacity-60 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-2xl">
+          <h3 className="absolute inset-0 flex items-center justify-center font-semibold text-white bg-black bg-opacity-70 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-2xl flex-wrap text-center" title="proyecto.nombre}">
             {proyecto.nombre}
           </h3>
         </div>

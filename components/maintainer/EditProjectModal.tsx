@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'; 
 import { Dialog, DialogContent, DialogOverlay, DialogTitle } from '../ui/dialog';
 import { Button } from '../ui/button';
+import Swal from 'sweetalert2';
 
 
 const EditProjectModal = ({ project, isOpen, onClose }) => {
@@ -45,10 +46,20 @@ const EditProjectModal = ({ project, isOpen, onClose }) => {
       setNombre('');
       setImagen(null);
       setActivo(false);
+      // Mostrar alerta de éxito
+      Swal.fire({
+        icon: 'success',
+        title: 'Proyecto guardado',
+        text: 'El proyecto se ha guardado correctamente.',
+      })
       onClose();
     } catch (error) {
       console.error('Error en la llamada a la API:', error);
-      // Maneja el error, por ejemplo, mostrando un mensaje al usuario
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error.message,
+      });
     }
   };
 

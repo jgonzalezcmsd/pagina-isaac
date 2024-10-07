@@ -1,56 +1,59 @@
 "use client";
-import React, { useState } from 'react';
-import { Button } from '../ui/button';
+import React, { useState } from 'react'
+import { Button } from '../ui/button'
 import Swal from 'sweetalert2';
 import { Dialog, DialogContent, DialogOverlay, DialogTitle } from '../ui/dialog';
 
-const AddProjectModal = ({ isOpen, onClose }) => {
-  const [nombre, setNombre] = useState("");
-  const [imagen, setImagen] = useState<File | null>(null);
-  const [activo, setActivo] = useState(true);
+const AddProjectModal = ({isOpen, onClose}) => {
+    
+    const [nombre, setNombre] = useState("");
+    const [imagen, setImagen] = useState<File | null>(null);
+    const [activo, setActivo] = useState(true);
 
-  const handleUpload = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("nombre", nombre);
-    formData.append("imagen", imagen!); // El `!` indica que no es nulo
-    formData.append("activo", activo.toString());
-
-    console.log(formData.get("nombre"), formData.get("imagen"), formData.get("activo"));
-
-    try {
-      const response = await fetch("/api/dashboard/proyectos", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        // Limpia los estados y cierra el modal
-        setNombre("");
-        setImagen(null);
-        setActivo(true);
-
-        // Mostrar alerta de éxito
-        Swal.fire({
-          icon: 'success',
-          title: 'Proyecto guardado',
-          text: 'El proyecto se ha guardado correctamente.',
-        })
-          
-      } else {
-        throw new Error('Error al guardar el proyecto');
+    const handleUpload = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+    
+        const formData = new FormData();
+        formData.append("nombre", nombre.toString() );
+        formData.append("imagen", imagen!); // El `!` indica que no es nulo
+        formData.append("activo", activo.toString());
+        console.log(formData.get('imagen'));
+    
+        try {
+          // Aquí debes hacer una petición a tu API para guardar el proyecto
+          const response = await fetch("/api/dashboard/proyectos", {
+            method: "POST",
+            body: formData,
+          });
+      
+          if (response.ok) {
+            // Mostrar alerta de éxito cuando se guarde correctamente
+            Swal.fire({
+              icon: 'success',
+              title: 'Proyecto guardado',
+              text: 'El proyecto se ha guardado correctamente.',
+            });
+            // Limpia los estados y cierra el modal
+            setNombre("");
+            setImagen(null);
+            setActivo(true);
+            setActivo(false);
+            
+          } else {
+            throw new Error('Error al guardar el proyecto');
+          }
+        } catch (error) {
+          // Mostrar alerta de error si algo sale mal
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: error.message,
+        });
       }
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: error.message,
-      });
-    }
-
-    onClose();
-  };
+      onClose();
+      
+      };
+    
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -108,7 +111,7 @@ const AddProjectModal = ({ isOpen, onClose }) => {
         </form>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}
 
 export default AddProjectModal;

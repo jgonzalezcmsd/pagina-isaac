@@ -8,7 +8,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const images = await prisma.heroImage.findMany({
       where: { isActive: true },
-      select: { imagePath: true },
+      select: {
+        id: true, 
+        imagePath: true,
+        isActive: true
+      },
     });
     res.status(200).json(images);
   } catch (error) {
