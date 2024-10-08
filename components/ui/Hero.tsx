@@ -2,12 +2,17 @@
 import { Navbar } from './Navbar';
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
+import 'animate.css'
 
 export const Hero = () => {
 
   const [images, setImages] = useState<string[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [fadeIn, setFadeIn] = useState(true);
+  // Llama a fetchImages al montar el componente
+  useEffect(() => {
+    fetchImages();
+  }, []);
 
     // Función para obtener las imágenes
     const fetchImages = async () => {
@@ -21,10 +26,6 @@ export const Hero = () => {
       }
     };
 
-    // Llama a fetchImages al montar el componente
-    useEffect(() => {
-      fetchImages();
-    }, []);
 
     // Cambiar la imagen cada 5 segundos
     useEffect(() => {
@@ -46,9 +47,12 @@ export const Hero = () => {
     {/* Navbar */}
     <Navbar />
     {/* Image Background */}
-    <img
+    <Image
       src={images[currentImageIndex]}
       alt="Background"
+      loading='lazy'
+      height={screen.height}
+      width={screen.width}
       className={`absolute top-0 left-0 w-full h-full object-cover transition-opcaity duration-500 ${
         fadeIn ? 'opacity-100' : 'opacity-0'
       }`}
@@ -65,19 +69,19 @@ export const Hero = () => {
         alt="Logo" 
         width={300}
         height={300}
-        className="w-32 h-auto mb-4 md:w-48" 
+        className="w-32 h-auto mb-4 md:w-48 animate__animated animate__zoomIn" 
       />
       
-      <h1 className="text-4xl md:text-6xl font-bold mb-4">PROJECT + BIM</h1>
-      <p className="text-lg md:text-xl max-w-md mb-6">
+      <h1 className="text-4xl md:text-6xl font-bold mb-4 animate__animated animate__slideInLeft">PROJECT + BIM</h1>
+      <p className="text-lg md:text-xl max-w-md mb-6 animate__animated animate__slideInRight">
         Creamos tus pensamientos en 3D.
       </p>
-      <a
+      {/* <a
         href="#about"
         className="px-6 py-3 bg-blue-600 text-white font-bold rounded hover:bg-blue-500 transition duration-300"
       >
         Aprende más 
-      </a>
+      </a> */}
     </div>
   </div>
   )

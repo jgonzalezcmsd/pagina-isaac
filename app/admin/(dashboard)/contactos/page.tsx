@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import 'animate.css';
 
 
 interface Contacto {
@@ -23,7 +24,7 @@ interface Mensaje {
   texto: string;
   fecha: Date;
 }
- const page = () => {
+ const Page = () => {
 
   const [contactos, setContactos] = useState<Contacto[]>([]);
 
@@ -45,12 +46,12 @@ interface Mensaje {
 
   return (
     <div className=" min-h-screen">
-      <h2 className="text-2xl font-bold mb-6 text-white text-center">Contactos</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <h2 className="text-2xl font-bold mb-6 text-white text-center animate__animated animate__fadeIn">Contactos</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate__animated animate__fadeIn">
         {contactos.map((contacto) => (
           <div
             key={contacto.id}
-            className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+            className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow "
           >
             <div className="flex items-center mb-4">
               <div className="bg-blue-500 rounded-full w-12 h-12 flex items-center justify-center text-white font-bold">
@@ -76,10 +77,11 @@ interface Mensaje {
 
             <div className="mt-4">
               <h4 className="font-semibold text-lg text-gray-900 mb-3">
-                Interacciones
+                Mensajes
               </h4>
               <div className="space-y-3">
-                {contacto.Interaccion.map((interaccion) => (
+                {/* @ts-ignore */}
+                {contacto.Interaccion?.map((interaccion) => (
                   <div
                     key={interaccion.id}
                     className="p-4 bg-gray-50 border rounded-md"
@@ -91,7 +93,7 @@ interface Mensaje {
                       {new Date(interaccion.fecha).toLocaleString()}
                     </p>
                     <div className="mt-2">
-                      {interaccion.mensajes.map((mensaje) => (
+                      {interaccion.mensajes.map((mensaje: { id: React.Key | null | undefined; texto: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }) => (
                         <div
                           key={mensaje.id}
                           className="bg-white p-2 rounded-md mb-1 border"
@@ -111,4 +113,4 @@ interface Mensaje {
   )
 }
 
-export default page;
+export default Page;

@@ -2,8 +2,9 @@
 import { Switch } from '@/components/ui/switch';
 import React, { useEffect, useState } from 'react';
 import UploadImageDialog from '../../../../components/maintainer/uploadImageModal';
+import 'animate.css';
 
-const page = () => {
+const Page = () => {
     const [images, setImages] = useState([]);
 
     // Simulación de la carga de datos desde la API
@@ -17,7 +18,7 @@ const page = () => {
     }, []);
   
     // Manejar el cambio de estado de la imagen
-    const handleToggle = async (image) => {
+    const handleToggle = async (image: any) => {
         console.log(image)
         try {
           // Realiza la llamada a la API para cambiar el estado de la imagen
@@ -26,15 +27,16 @@ const page = () => {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({                 id: image.id,
+            body: JSON.stringify({                 
+                id: image.id,
                 isActive: !image.isActive 
             }),
           });
       
           if (response.ok) {
             // Actualizamos el estado localmente si la petición es exitosa
-            setImages((prevImages) =>
-              prevImages.map((img) =>
+            setImages((prevImages: any) =>
+              prevImages.map((img: any) =>
                 img.id === image.id ? { ...img, isActive: !img.isActive } : img
               )
             );
@@ -63,8 +65,8 @@ const page = () => {
             onUploadSuccess={handleImageUpload}
         />
     </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {images.map((image) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate__animated animate__fadeIn">
+      {images.map((image: any) => (
         <div key={image.id} className="bg-white border border-gray-200 rounded-lg shadow-md p-4 relative">
           <img
             src={image.imagePath}
@@ -98,4 +100,4 @@ const page = () => {
   )
 }
 
-export default page;
+export default Page;

@@ -4,7 +4,11 @@ import { Button } from '../ui/button'
 import Swal from 'sweetalert2';
 import { Dialog, DialogContent, DialogOverlay, DialogTitle } from '../ui/dialog';
 
-const AddProjectModal = ({isOpen, onClose}) => {
+const AddProjectModal = (
+  {
+    isOpen,
+    onClose
+  }) => {
     
     const [nombre, setNombre] = useState("");
     const [imagen, setImagen] = useState<File | null>(null);

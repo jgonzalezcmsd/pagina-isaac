@@ -1,6 +1,6 @@
 "use client";
 
-const Dashboard: React.FC<{ children: React.ReactNode }> = () => {
+const Dashboard = () => {
 
     return(
         <div

@@ -1,14 +1,15 @@
-
+"use client";
 import CurrencyDollarIcon from '@heroicons/react/outline/CurrencyDollarIcon'
 import DeviceTabletIcon from '@heroicons/react/outline/DeviceTabletIcon'
 import GlobeAltIcon from '@heroicons/react/outline/GlobeAltIcon'
 import PencilIcon from '@heroicons/react/outline/PencilIcon'
-import React from 'react'
+import 'animate.css';
 
 export const About = () => {
+
   return (
-    <section className="bg-gray-800 text-white py-20">
-      <div className="container mx-auto text-center">
+    <section  className="bg-gray-800 text-white py-20  h-screen ">
+      <div className="container mx-auto text-center pt-60 lg:pt-80 xl:pt-96">
         <h2 className="text-3xl md:text-5xl font-bold mb-8">Mejora tus proyectos en OBRA</h2>
         <h3 className="text-xl mb-12">Nuestros Servicios BIM</h3>
 

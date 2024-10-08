@@ -5,6 +5,7 @@ import { SessionProvider, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 import '../../globals.css';
+import { Footer } from '../../../components/ui/Footer';
 
 
 const DashboardLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -33,6 +34,7 @@ export default function SessionWrapper({ children }: { children: React.ReactNode
     return (
       <SessionProvider>
         <DashboardLayout>{children}</DashboardLayout>
+        <Footer />
       </SessionProvider>
     );
   }

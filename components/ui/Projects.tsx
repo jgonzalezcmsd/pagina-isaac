@@ -50,7 +50,7 @@ export const Projects = () => {
   };
   return (
     
-    <div className="py-10 bg-gray-800">
+    <div className="py-10 bg-gray-800 h-screen pt-60 lg:pt-80 xl:pt-96">
     <h2 className="text-3xl font-bold text-center mb-6 text-white">Nuestros Proyectos</h2>
     <div 
     ref={scrollRef}    
