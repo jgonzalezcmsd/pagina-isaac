@@ -38,12 +38,11 @@ export const ContactForm = () => {
         message: data.message,
       });
       
-      // Feature bloqueada por el host momentaneamente
-      // Aquí envías un correo de confirmación
-      // await axios.post('/api/send-confirmation-email', {
-      //   email: data.email,
-      //   name: data.name,
-      // });
+
+      await axios.post('/api/send-confirmation-email', {
+        email: data.email,
+        name: data.name,
+      });
 
       // Oculta el formulario y muestra un mensaje de agradecimiento
       setFormVisible(false);
@@ -59,7 +58,7 @@ export const ContactForm = () => {
         className="absolute inset-0 bg-cover bg-center "
         style={{ backgroundImage: 'url("/assets/planta_curacavi.png")' }}
       ></div>
-      <div className="relative pt-60 lg:pt-80 xl:pt-96 text-white py-10 bg-black bg-opacity-50 h-screen">
+      <div className="relative pt-60 lg:pt-70  text-white py-10 bg-black bg-opacity-50 h-screen">
         {formVisible ? (
           <div className={`transition-opacity duration-500  ${!formVisible ? 'opacity-0' : 'opacity-100'}`}>
             <h2 className="text-3xl font-bold text-center mb-6">¡Contáctanos!</h2>

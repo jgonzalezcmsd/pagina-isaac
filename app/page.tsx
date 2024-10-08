@@ -9,7 +9,7 @@ export default function Home() {
         <section id="hero" className="col md:w-full ">
           <Hero />
         </section>
-        <section id="services" className='col md:w-full' >
+        <section id="services" className='col w-full md:w-full' >
           <About />
         </section>
         <section id="projects" className="col md:w-full  " >

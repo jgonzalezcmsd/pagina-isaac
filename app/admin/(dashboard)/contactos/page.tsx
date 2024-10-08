@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import 'animate.css';
+import Swal from 'sweetalert2';
 
 
 interface Contacto {
@@ -42,16 +43,31 @@ interface Mensaje {
 
     fetchData();
   }, []);
+    const copyToClipboard = (email: string) => {
+        navigator.clipboard.writeText(email)
+            .then(() => {
+                console.log('Correo copiado al portapapeles');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Correo copiado',
+                    text: 'El correo ha sido copiado al portapapeles',
+                })
+                // Puedes mostrar un mensaje de confirmación aquí si deseas
+            })
+            .catch(err => {
+                console.error('Error al copiar el correo: ', err);
+            });
+    };
 
 
   return (
     <div className=" min-h-screen">
       <h2 className="text-2xl font-bold mb-6 text-white text-center animate__animated animate__fadeIn">Contactos</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate__animated animate__fadeIn">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate__animated animate__fadeIn animate__delay-1s">
         {contactos.map((contacto) => (
           <div
             key={contacto.id}
-            className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow "
+            className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow  "
           >
             <div className="flex items-center mb-4">
               <div className="bg-blue-500 rounded-full w-12 h-12 flex items-center justify-center text-white font-bold">
@@ -61,15 +77,20 @@ interface Mensaje {
                 <h3 className="text-xl font-semibold text-gray-900">
                   {contacto.nombre}
                 </h3>
-                <p className="text-gray-600 text-sm">{contacto.email}</p>
+                <p 
+                    className="text-gray-600 text-sm cursor-pointer"
+                    onClick={() => copyToClipboard(contacto.email)}
+                >
+                    {contacto.email}
+                </p>
                 {contacto.telefono && (
                   <p className="text-gray-500 text-sm">
-                    Teléfono: {contacto.telefono}
+                    <b>Teléfono:</b> {contacto.telefono}
                   </p>
                 )}
                 {contacto.empresa && (
                   <p className="text-gray-500 text-sm">
-                    Empresa: {contacto.empresa.nombre}
+                    <b>Empresa:</b> {contacto.empresa.nombre}
                   </p>
                 )}
               </div>

@@ -8,12 +8,12 @@ import 'animate.css';
 export const About = () => {
 
   return (
-    <section  className="bg-gray-800 text-white py-20  h-screen ">
-      <div className="container mx-auto text-center pt-60 lg:pt-80 xl:pt-96">
+    <section  className="bg-gray-800 text-white py-20  h-screen w-full">
+      <div className="container mx-auto text-center space-y-8 justify-center items-center py-40">
         <h2 className="text-3xl md:text-5xl font-bold mb-8">Mejora tus proyectos en OBRA</h2>
         <h3 className="text-xl mb-12">Nuestros Servicios BIM</h3>
 
-        <div className="flex flex-col md:flex-row justify-center space-y-8 md:space-y-0 md:space-x-8">
+        <div className="flex flex-col md:flex-row justify-center space-y-8 md:space-y-0 md:space-x-8 ">
           {/* Coordinación */}
           <div className="flex flex-col items-center">
             <GlobeAltIcon className="h-16 w-16 text-blue-600 mb-4" />
