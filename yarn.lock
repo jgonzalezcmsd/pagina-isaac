@@ -442,6 +442,16 @@
   resolved "https://registry.npmjs.org/@nolyfill/is-core-module/-/is-core-module-1.0.39.tgz"
   integrity sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==
 
+"@oven/bun-linux-x64-baseline@1.1.30":
+  version "1.1.30"
+  resolved "https://registry.npmjs.org/@oven/bun-linux-x64-baseline/-/bun-linux-x64-baseline-1.1.30.tgz"
+  integrity sha512-/b/VuNOaAYmsVk9MvfwKcCYARJPUg78hebxNyD5DSajAf3dqtUSnf7QYcq/3mxWH++N+gM7uRTrGksGS63+ZUw==
+
+"@oven/bun-linux-x64@1.1.30":
+  version "1.1.30"
+  resolved "https://registry.npmjs.org/@oven/bun-linux-x64/-/bun-linux-x64-1.1.30.tgz"
+  integrity sha512-1mC39jQSaECytEKAZdCZmv3ZreMsp7aoxnBwmJtVd2Z7urnw17PKi4dKkZd/R+AubsNYtXtW4jeM8SEa5sUJRw==
+
 "@panva/hkdf@^1.0.2":
   version "1.2.1"
   resolved "https://registry.npmjs.org/@panva/hkdf/-/hkdf-1.2.1.tgz"
@@ -1189,6 +1199,20 @@ buffer@^6.0.3:
   dependencies:
     base64-js "^1.3.1"
     ieee754 "^1.2.1"
+
+bun@^1.1.30:
+  version "1.1.30"
+  resolved "https://registry.npmjs.org/bun/-/bun-1.1.30.tgz"
+  integrity sha512-ysRL1pq10Xba0jqVLPrKU3YIv0ohfp3cTajCPtpjCyppbn3lfiAVNpGoHfyaxS17OlPmWmR67UZRPw/EueQuug==
+  optionalDependencies:
+    "@oven/bun-darwin-aarch64" "1.1.30"
+    "@oven/bun-darwin-x64" "1.1.30"
+    "@oven/bun-darwin-x64-baseline" "1.1.30"
+    "@oven/bun-linux-aarch64" "1.1.30"
+    "@oven/bun-linux-x64" "1.1.30"
+    "@oven/bun-linux-x64-baseline" "1.1.30"
+    "@oven/bun-windows-x64" "1.1.30"
+    "@oven/bun-windows-x64-baseline" "1.1.30"
 
 busboy@1.6.0:
   version "1.6.0"
