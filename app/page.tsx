@@ -12,7 +12,7 @@ export default function Home() {
         <section id="services" className='col w-full md:w-full' >
           <About />
         </section>
-        <section id="projects" className="col md:w-full  " >
+        <section id="projects" className="col w-full md:w-full  " >
             <Projects />
         </section>
         <section id="contact" className="col md:w-full" >

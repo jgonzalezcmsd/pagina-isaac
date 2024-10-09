@@ -39,10 +39,10 @@ export const ContactForm = () => {
       });
       
 
-      await axios.post('/api/send-confirmation-email', {
-        email: data.email,
-        name: data.name,
-      });
+      //await axios.post('/api/send-confirmation-email', {
+      //  email: data.email,
+      //  name: data.name,
+      //});
 
       // Oculta el formulario y muestra un mensaje de agradecimiento
       setFormVisible(false);
