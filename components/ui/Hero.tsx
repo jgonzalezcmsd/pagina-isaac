@@ -43,14 +43,13 @@ export const Hero = () => {
     if (images.length === 0) return null; 
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-screen h-screen overflow-hidden">
     {/* Navbar */}
     <Navbar />
     {/* Image Background */}
     <Image
       src={images[currentImageIndex]}
-      alt="Background"
-      loading='lazy'
+      alt="cover"
       height={screen.height}
       width={screen.width}
       className={`absolute top-0 left-0 w-full h-full object-cover transition-opcaity duration-500 ${
