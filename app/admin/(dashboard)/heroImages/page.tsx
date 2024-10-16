@@ -55,6 +55,17 @@ const Page = () => {
         setImages(data); // Actualiza las imágenes
     };
 
+     // Verifica que images sea un arreglo antes de hacer map
+  if (!Array.isArray(images)) {
+    return <div>
+      <h1 className="text-3xl font-bold mb-8 text-white">Administrar Imágenes de Cabecera</h1>
+      <div className='py-3'>
+          <UploadImageDialog 
+              onUploadSuccess={handleImageUpload}
+          />
+      </div>
+    </div>;
+  }
       
 
   return (
@@ -66,7 +77,7 @@ const Page = () => {
         />
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate__animated animate__fadeIn">
-      {images.map((image: any) => (
+      {images!.map((image: any) => (
         <div key={image.id} className="bg-white border border-gray-200 rounded-lg shadow-md p-4 relative">
           <img
             src={image.imagePath}
