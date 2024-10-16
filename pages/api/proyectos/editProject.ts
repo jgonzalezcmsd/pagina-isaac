@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import formidable from 'formidable';
 import fs from 'fs';
+import { Client } from 'minio';
 import path from 'path';
 
 const prisma = new PrismaClient();
@@ -13,10 +14,18 @@ export const config = {
   },
 };
 
+// Configura el cliente de MinIO
+const minioClient = new Client({
+  endPoint: 'storage.projectbim.cl', // Cambia esto según tu configuración de MinIO
+  port: 9000, // Cambia esto a 9000 si no usas SSL
+  useSSL: false, // Cambia esto a false si no usas SSL
+  accessKey: process.env.ACCESS_KEY!, // Tu access key de MinIO
+  secretKey: process.env.SECRET_KEY!, // Tu secret key de MinIO
+});
+
 const editProjectHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'PUT') {
     const form = formidable({
-      uploadDir: path.join(process.cwd(), 'public/assets/projects/proyectos'),
       keepExtensions: true,
     });
 
@@ -35,10 +44,7 @@ const editProjectHandler = async (req: NextApiRequest, res: NextApiResponse) => 
 
       try {
         // Busca el proyecto en la base de datos
-        const project = await prisma.proyecto.findUnique({ where: { 
-            id: parseInt(id[0]), 
-          } 
-        });
+        const project = await prisma.proyecto.findUnique({ where: { id: parseInt(id[0]) } });
         if (!project) {
           return res.status(404).json({ error: 'Proyecto no encontrado.' });
         }
@@ -54,24 +60,28 @@ const editProjectHandler = async (req: NextApiRequest, res: NextApiResponse) => 
             return res.status(400).json({ error: 'Tipo de archivo no válido. Solo se permiten imágenes.' });
           }
 
-          // Renombrar y mover la imagen
-          const oldPath = imagenFile.filepath;
-          const newPath = path.join(process.cwd(), 'public/assets/projects/proyectos', imagenFile.originalFilename);
+          // Leer el archivo y cargarlo a MinIO
+          const fileStream = fs.createReadStream(imagenFile.filepath);
+          const bucketName = 'proyectos'; // Cambia esto si el nombre de tu bucket es diferente
+          const fileName = imagenFile.originalFilename || 'imagen_predeterminada.jpg';
 
-          await fs.promises.rename(oldPath, newPath); // Mover la imagen
-          imagenUrl = '/assets/projects/proyectos/' + imagenFile.originalFilename; // Actualizar la URL de la imagen
+          // Sube el archivo a MinIO
+          await minioClient.putObject(bucketName, fileName, fileStream, imagenFile.size, {
+            'Content-Type': imagenFile.mimetype,
+          });
+
+          // Genera la URL de la imagen en MinIO
+          imagenUrl = `https://storage.projectbim.cl/api/v1/buckets/${bucketName}/objects/download?preview=true&prefix=${fileName}&version_id=null`;
         }
 
         // Actualiza el proyecto
         const updatedProject = await prisma.proyecto.update({
-          where:{ 
-                id: Number(id[0]), 
-            },
-            data: {
-                nombre: nombre.toString(),
-                imagenUrl,
-                isActive: activo[0] === 'true',
-            },
+          where: { id: Number(id[0]) },
+          data: {
+            nombre: nombre.toString(),
+            imagenUrl: imagenUrl,
+            isActive: activo[0] === 'true',
+          },
         });
 
         return res.status(200).json(updatedProject);
