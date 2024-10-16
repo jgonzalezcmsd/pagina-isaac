@@ -23,22 +23,24 @@ export default function Home() {
       <div className=" font-[family-name:var(--font-geist-sans)]">
   
         <main className="flex flex-col  row-start-2 items-center sm:items-start">
-          <section id="hero" className="col md:w-full ">
+          <section id="hero" className="col w-screen">
             <Hero />
           </section>
-          <section id="services" className='col w-screen md:w-full' >
+          <section id="services" className='col w-screen' >
             <About />
           </section>
-          <section id="projects" className="col w-screen md:w-full  " >
+          <section id="projects" className="col w-screen h-full  " >
               <Projects />
           </section>
-          <section id="contact" className="col md:w-full" >
+          <section id="contact" className="col w-screen " >
             <ContactForm />
             
           </section>
           
         </main>
-        <Footer />
+        <section id="footer" className="col w-screen " >                        
+            <Footer />
+          </section>
       </div>
     </div>
     

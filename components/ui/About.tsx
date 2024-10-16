@@ -8,7 +8,7 @@ import 'animate.css';
 export const About = () => {
 
   return (
-    <section  className="bg-gray-800 text-white py-20  h-screen w-full">
+    <section  className="bg-gray-800 text-white ">
       <div className="container mx-auto text-center space-y-8 justify-center items-center py-40">
         <h2 className="text-3xl md:text-5xl font-bold mb-8">Mejora tus proyectos en OBRA</h2>
         <h3 className="text-xl mb-12">Nuestros Servicios BIM</h3>
