@@ -60,7 +60,7 @@ export const Projects = () => {
       {proyectos.map((proyecto) => (
         <div key={proyecto.id} className="min-w-[400px] max-w-[400px] bg-gray-300 rounded-lg shadow-md overflow-hidden relative group ">
           <Image src={proyecto.imagenUrl} alt={proyecto.nombre} width={400} height={400} className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105" />
-          <h3 className="absolute inset-0 flex items-center justify-center font-semibold text-white bg-black bg-opacity-70 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-2xl flex-wrap text-center" title="proyecto.nombre}">
+          <h3 className="absolute inset-0 flex items-center justify-center font-semibold text-white bg-black/70 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-2xl flex-wrap text-center" title="proyecto.nombre}">
             {proyecto.nombre}
           </h3>
         </div>

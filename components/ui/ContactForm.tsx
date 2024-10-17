@@ -58,7 +58,7 @@ export const ContactForm = () => {
         className="absolute inset-0 bg-cover bg-center "
         style={{ backgroundImage: 'url("/assets/planta_curacavi.png")' }}
       ></div>
-      <div className="relative pt-60 lg:pt-70  text-white py-10 bg-black bg-opacity-50 h-screen">
+      <div className="relative pt-60 lg:pt-70  text-white py-10 bg-black/50  h-screen">
         {formVisible ? (
           <div className={`transition-opacity duration-500  ${!formVisible ? 'opacity-0' : 'opacity-100'}`}>
             <h2 className="text-3xl font-bold text-center mb-6">¡Contáctanos!</h2>
