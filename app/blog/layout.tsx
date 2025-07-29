@@ -1,16 +1,5 @@
-import { Footer, Navbar } from "@/components";
-import localFont from "next/font/local";
-
-const geistSans = localFont({
-  src: "../fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "../fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import { Navbar } from '@/components/ui/Navbar';
+import { Footer } from '@/components/ui/Footer';
 
 export default function BlogLayout({
   children,
@@ -20,7 +9,7 @@ export default function BlogLayout({
   return (
     <>
       <Navbar />
-      <main className={`${geistSans.variable} ${geistMono.variable} pt-20`}>
+      <main className="pt-20">
         {children}
       </main>
       <Footer />

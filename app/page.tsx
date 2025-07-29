@@ -1,4 +1,3 @@
-import Head from "next/head";
 import {
   About,
   ContactForm,
@@ -8,38 +7,32 @@ import {
   Navbar,
 } from "../components/index";
 import { RecentBlog } from "../components/ui/RecentBlog";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Project + BIM",
+  description: "Bienvenido a ProjectBIM, donde ofrecemos soluciones de construcción innovadoras.",
+  keywords: "construcción, proyectos, innovación, BIM, off-site, 3D, sustainability, IOT, simulation, presupuesto, ingeniería, proyectos 3D, fotogrametria",
+  authors: [{ name: "Isaac Campos" }],
+  openGraph: {
+    title: "Project + BIM",
+    description: "Bienvenido a ProjectBIM, donde ofrecemos soluciones de construcción innovadoras.",
+    url: "https://projectbim.cl",
+    locale: "es_ES",
+    type: "website",
+    siteName: "Project + BIM",
+    images: ["https://projectbim.cl/assets/logos/Logo-sin-fondo.png"]
+  },
+  alternates: {
+    canonical: "https://projectbim.cl"
+  }
+};
 
 export default function Home() {
   return (
     <div>
       <Navbar />
-      <Head>
-          <title>Project + BIM</title>
-          <meta
-            name="description"
-            content="Bienvenido a ProjectBIM, donde ofrecemos soluciones de construcción innovadoras."
-          />
-          <meta
-            name="keywords"
-            content="construcción, proyectos, innovación, BIM, off-site, 3D, sustainability, IOT, simulation, presupuesto, ingeniería, proyectos 3D, fotogrametria"
-          />
-          <meta name="author" content="Isaac Campos" />
-          <meta
-            property="og:description"
-            content="Bienvenido a ProjectBIM, donde ofrecemos soluciones de construcción innovadoras."
-          />
-          <meta property="og:url" content="https://projectbim.cl" />
-          <meta property="og:locale" content="es_ES" />
-          <meta property="og:type" content="website" />
-          <meta property="og:site_name" content="Project + BIM" />
-          <meta
-            property="og:image"
-            content="https://projectbim.cl/assets/logos/Logo-sin-fondo.png"
-          />
-          <meta property="og:title" content="Project + BIM" />
-          <link rel="canonical" href="https://projectbim.cl" />
-        </Head>
-      <div className="font-[family-name:var(--font-geist-sans)]">
+      <div>
         <main className="flex flex-col row-start-2 items-center sm:items-start">
             <section id="hero" className="col w-screen">
               <Hero />
