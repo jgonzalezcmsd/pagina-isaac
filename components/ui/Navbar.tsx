@@ -43,13 +43,13 @@ export const Navbar = () => {
             </div>
           </a>
           <div className="hidden md:flex space-x-4">
-            <a href="#hero" className="text-white hover:text-blue-500">Home</a>
-            <a href="#services" className="text-white hover:text-blue-500">Servicios</a>
-            <a href="#projects" className="text-white hover:text-blue-500">Proyectos</a>
-            <a href="/drones" className="text-white hover:text-blue-500">Drones</a>
-            <a href="/blog" className="text-white hover:text-blue-500">Blog</a>
-            <a href="#contact" className="text-white hover:text-blue-500">Contacto</a>
-            <a href="/login" className="text-white hover:text-blue-500">Administrador</a>
+              <a href="/" className="text-white hover:text-blue-500">Home</a>
+              <a href="/#services" className="text-white hover:text-blue-500">Servicios</a>
+              <a href="/#projects" className="text-white hover:text-blue-500">Proyectos</a>
+              <a href="/drones" className="text-white hover:text-blue-500">Drones</a>
+              <a href="/blog" className="text-white hover:text-blue-500">Blog</a>
+              <a href="/#contact" className="text-white hover:text-blue-500">Contacto</a>
+              <a href="/login" className="text-white hover:text-blue-500">Administrador</a>
           </div>
         </div>
       </nav>
