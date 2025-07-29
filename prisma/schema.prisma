@@ -58,6 +58,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   contactos     Contacto[] @relation(name: "UsuarioContactos")
+  blogPosts     BlogPost[]
 }
 
 model VerificationRequest {
@@ -133,4 +134,86 @@ model Proyecto {
   isActive  Boolean @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt @default(now())
+}
+
+model BlogPost {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  excerpt     String?
+  content     String   @db.Text
+  featuredImage String?
+  metaTitle   String?
+  metaDescription String?
+  keywords    String?
+  published   Boolean  @default(false)
+  publishedAt DateTime?
+  authorId    String?
+  author      User?    @relation(fields: [authorId], references: [id])
+  categories  BlogCategory[]
+  tags        BlogTag[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BlogCategory {
+  id          Int        @id @default(autoincrement())
+  name        String     @unique
+  slug        String     @unique
+  description String?
+  posts       BlogPost[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model BlogTag {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  slug      String     @unique
+  posts     BlogPost[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model DroneService {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  description String   @db.Text
+  shortDescription String?
+  featuredImage String?
+  gallery     String?  @db.Text // JSON array of image URLs
+  price       Decimal? @db.Decimal(10,2)
+  duration    String?
+  equipment   String?  @db.Text
+  deliverables String? @db.Text
+  metaTitle   String?
+  metaDescription String?
+  keywords    String?
+  isActive    Boolean  @default(true)
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model DroneProject {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  description String   @db.Text
+  location    String?
+  area        String?
+  equipment   String?
+  deliverables String? @db.Text
+  featuredImage String?
+  gallery     String?  @db.Text // JSON array of image URLs
+  completedAt DateTime?
+  clientName  String?
+  metaTitle   String?
+  metaDescription String?
+  keywords    String?
+  isActive    Boolean  @default(true)
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

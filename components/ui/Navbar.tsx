@@ -25,7 +25,7 @@ export const Navbar = () => {
     return (
       <nav
         className={`fixed w-full transition-colors duration-300 ${
-          isScrolled ? "bg-gray-700" : "bg-transparent"
+          isScrolled ? "bg-gray-700" : "bg-gray-800/90 backdrop-blur-sm"
         } p-4 top-0 left-0 z-50`}
       >
         <div className="container mx-auto flex justify-between items-center">
@@ -44,9 +44,10 @@ export const Navbar = () => {
           </a>
           <div className="hidden md:flex space-x-4">
             <a href="#hero" className="text-white hover:text-blue-500">Home</a>
-            {/* <a href="#about" className="text-white hover:text-blue-500">Acerca De Nosotros</a> */}
             <a href="#services" className="text-white hover:text-blue-500">Servicios</a>
             <a href="#projects" className="text-white hover:text-blue-500">Proyectos</a>
+            <a href="/drones" className="text-white hover:text-blue-500">Drones</a>
+            <a href="/blog" className="text-white hover:text-blue-500">Blog</a>
             <a href="#contact" className="text-white hover:text-blue-500">Contacto</a>
             <a href="/login" className="text-white hover:text-blue-500">Administrador</a>
           </div>
