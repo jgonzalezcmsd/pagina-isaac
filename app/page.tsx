@@ -31,7 +31,7 @@ export default function Home() {
             <About />
           </section>
           <section id="projects" className="col w-screen h-full  " >
-              <Projects />
+            <Projects />
           </section>
           <section id="blog" className="col w-screen" >
             <RecentBlog />
