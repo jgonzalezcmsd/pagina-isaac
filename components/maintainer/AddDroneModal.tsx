@@ -28,6 +28,7 @@ export default function AddDroneModal({ isOpen, onClose, onSuccess, type }: AddD
     metaTitle: '',
     metaDescription: '',
     keywords: '',
+    featuredImage: '',
     featured: false
   });
 
@@ -65,6 +66,7 @@ export default function AddDroneModal({ isOpen, onClose, onSuccess, type }: AddD
           metaTitle: '',
           metaDescription: '',
           keywords: '',
+          featuredImage: '',
           featured: false
         });
         onSuccess();
@@ -74,6 +76,26 @@ export default function AddDroneModal({ isOpen, onClose, onSuccess, type }: AddD
       console.error('Error creating:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const formDataImg = new FormData();
+      formDataImg.append('image', file);
+
+      const response = await fetch('/api/drones/upload', {
+        method: 'POST',
+        body: formDataImg
+      });
+
+      const data = await response.json();
+      setFormData(prev => ({ ...prev, featuredImage: data.url }));
+    } catch (error) {
+      console.error('Error uploading image:', error);
     }
   };
 
@@ -240,6 +262,19 @@ export default function AddDroneModal({ isOpen, onClose, onSuccess, type }: AddD
                   onChange={(e) => setFormData(prev => ({ ...prev, keywords: e.target.value }))}
                   className="w-full p-2 border rounded"
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">Imagen Principal</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="w-full p-2 border rounded"
+                />
+                {formData.featuredImage && (
+                  <img src={formData.featuredImage} alt="Preview" className="mt-2 h-20 object-cover rounded" />
+                )}
               </div>
             </div>
           </div>

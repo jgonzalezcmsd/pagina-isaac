@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
+import CotizacionModal from '@/components/ui/CotizacionModal';
 
 interface DroneService {
   id: number;
@@ -32,6 +33,7 @@ export default function DronesPage() {
   const [services, setServices] = useState<DroneService[]>([]);
   const [projects, setProjects] = useState<DroneProject[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showCotizacion, setShowCotizacion] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -67,7 +69,7 @@ export default function DronesPage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50 pt-20">
+      <div className="min-h-screen bg-white pt-20">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4 text-center">
@@ -108,11 +110,11 @@ export default function DronesPage() {
           </div>
 
           {services.length === 0 ? (
-            <div className="text-center py-16">
+            <div className="text-center py-16 bg-gray-50 rounded-lg">
               <div className="max-w-md mx-auto">
                 <div className="text-6xl mb-4">🚁</div>
-                <h3 className="text-2xl font-semibold text-gray-800 mb-2">¡Servicios en desarrollo!</h3>
-                <p className="text-gray-600">Estamos perfeccionando nuestros servicios de fotogrametría con drones para ofrecerte la mejor calidad. ¡Contáctanos para más información!</p>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-2">¡Servicios en desarrollo!</h3>
+                <p className="text-gray-700">Estamos perfeccionando nuestros servicios de fotogrametría con drones para ofrecerte la mejor calidad. ¡Contáctanos para más información!</p>
               </div>
             </div>
           ) : (
@@ -161,7 +163,7 @@ export default function DronesPage() {
       </section>
 
       {/* Projects Section */}
-      <section id="proyectos" className="py-16 bg-white">
+      <section id="proyectos" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -173,17 +175,17 @@ export default function DronesPage() {
           </div>
 
           {projects.length === 0 ? (
-            <div className="text-center py-16">
+            <div className="text-center py-16 bg-gray-50 rounded-lg">
               <div className="max-w-md mx-auto">
                 <div className="text-6xl mb-4">🏗️</div>
-                <h3 className="text-2xl font-semibold text-gray-800 mb-2">¡Proyectos espectaculares en camino!</h3>
-                <p className="text-gray-600">Estamos documentando nuestros mejores trabajos de fotogrametría aérea. Pronto podrás ver casos de éxito increíbles.</p>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-2">¡Proyectos espectaculares en camino!</h3>
+                <p className="text-gray-700">Estamos documentando nuestros mejores trabajos de fotogrametría aérea. Pronto podrás ver casos de éxito increíbles.</p>
               </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project) => (
-                <div key={project.id} className="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <div key={project.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                   {project.featuredImage && (
                     <div className="relative h-48">
                       <Image
@@ -232,15 +234,21 @@ export default function DronesPage() {
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Contáctanos para obtener una cotización personalizada para tu proyecto
           </p>
-          <Link
-            href="/contacto"
+          <button
+            onClick={() => setShowCotizacion(true)}
             className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-block"
           >
             Solicitar Cotización
-          </Link>
+          </button>
         </div>
       </section>
       </div>
+      
+      <CotizacionModal 
+        isOpen={showCotizacion}
+        onClose={() => setShowCotizacion(false)}
+      />
+      
       <Footer />
     </>
   );
