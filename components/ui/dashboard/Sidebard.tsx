@@ -21,28 +21,28 @@ const Sidebard = () => {
             <nav>
                 <ul>
                     <li className="mb-3">
-                        <Link href="/admin/proyectos" className="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <Link href="/admin/admin-proyectos" className="flex items-center p-2 hover:bg-gray-700 rounded">
                             <PresentationChartBarIcon className="h-6 w-6 mr-2" />
                             Proyectos
                         </Link>
                         <hr />
                     </li>
                     <li className="mb-3">
-                        <Link href="/admin/contactos" className="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <Link href="/admin/admin-contactos" className="flex items-center p-2 hover:bg-gray-700 rounded">
                             <UserIcon className="h-6 w-6 mr-2" />
                             Contacto
                         </Link>
                         <hr />
                     </li>
                     <li className="mb-3">
-                        <Link href="/admin/heroImages" className="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <Link href="/admin/admin-hero" className="flex items-center p-2 hover:bg-gray-700 rounded">
                             <PhotographIcon className="h-6 w-6 mr-2" />
                             Imagenes Portada
                         </Link>
                         <hr />
                     </li>
                     <li className="mb-3">
-                        <Link href="/admin/blog" className="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <Link href="/admin/admin-blog" className="flex items-center p-2 hover:bg-gray-700 rounded">
                             <svg className="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                             </svg>
@@ -51,7 +51,7 @@ const Sidebard = () => {
                         <hr />
                     </li>
                     <li className="mb-3">
-                        <Link href="/admin/drones" className="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <Link href="/admin/admin-drones" className="flex items-center p-2 hover:bg-gray-700 rounded">
                             <svg className="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                             </svg>
@@ -60,7 +60,7 @@ const Sidebard = () => {
                         <hr />
                     </li>
                     <li className="mb-3">
-                        <Link href="/admin/cotizaciones" className="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <Link href="/admin/admin-cotizaciones" className="flex items-center p-2 hover:bg-gray-700 rounded">
                             <svg className="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>

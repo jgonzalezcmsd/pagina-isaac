@@ -4,7 +4,6 @@ import Sidebard from '@/components/ui/dashboard/Sidebard';
 import { SessionProvider, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
-import '../../globals.css';
 import { Footer } from '../../../components/ui/Footer';
 
 
