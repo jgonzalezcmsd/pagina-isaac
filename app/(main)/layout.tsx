@@ -1,18 +1,35 @@
-import { Navbar } from '@/components/ui/Navbar';
-import { Footer } from '@/components/ui/Footer';
+import type { Metadata } from "next";
+import localFont from "next/font/local";
+import "./globals.css";
 
-export default function MainLayout({
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+  weight: "100 900",
+});
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+});
+
+export const metadata: Metadata = {
+  title: "Project + BIM",
+  description: "Creando soluciones para tus proyectos en 3D",
+};
+
+export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <>
-      <Navbar />
-      <main className="pt-20">
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         {children}
-      </main>
-      <Footer />
-    </>
+      </body>
+    </html>
   );
 }
