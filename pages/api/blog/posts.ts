@@ -49,7 +49,13 @@ async function getPosts(req: NextApiRequest, res: NextApiResponse) {
 
 async function createPost(req: NextApiRequest, res: NextApiResponse) {
   try {
+    console.log('Creating blog post with data:', JSON.stringify(req.body, null, 2));
+    
     const { title, content, excerpt, featuredImage, metaTitle, metaDescription, keywords, published, categories, tags } = req.body;
+    
+    if (!title || !content) {
+      return res.status(400).json({ error: 'Title and content are required' });
+    }
     
     const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     
@@ -85,6 +91,12 @@ async function createPost(req: NextApiRequest, res: NextApiResponse) {
     res.status(201).json(post);
   } catch (error) {
     console.error('Error creating blog post:', error);
-    res.status(500).json({ error: 'Error creating blog post' });
+    console.error('Full error details:', JSON.stringify(error, null, 2));
+    console.error('Request body:', JSON.stringify(req.body, null, 2));
+    res.status(500).json({ 
+      error: 'Error creating blog post', 
+      details: error.message,
+      code: error.code 
+    });
   }
 }
