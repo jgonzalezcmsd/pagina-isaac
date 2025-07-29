@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import AddBlogModal from '@/components/maintainer/AddBlogModal';
 
 interface BlogPost {
   id: number;
@@ -15,6 +16,7 @@ interface BlogPost {
 export default function AdminBlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     fetchPosts();
@@ -78,7 +80,10 @@ export default function AdminBlogPage() {
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Gestión de Blog</h1>
-        <Button className="bg-blue-600 hover:bg-blue-700">
+        <Button 
+          onClick={() => setShowModal(true)}
+          className="bg-blue-600 hover:bg-blue-700"
+        >
           Nuevo Artículo
         </Button>
       </div>
@@ -152,6 +157,12 @@ export default function AdminBlogPage() {
           </div>
         )}
       </div>
+
+      <AddBlogModal 
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSuccess={fetchPosts}
+      />
     </div>
   );
 }

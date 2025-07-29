@@ -5,6 +5,9 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import Head from 'next/head';
+import { Navbar } from '@/components/ui/Navbar';
+import { Footer } from '@/components/ui/Footer';
+import { marked } from 'marked';
 
 interface BlogPost {
   id: number;
@@ -107,7 +110,9 @@ export default function BlogPostPage() {
         />
       </Head>
       
-      <article className="min-h-screen bg-white">
+      <>
+        <Navbar />
+        <article className="min-h-screen bg-white pt-20">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
@@ -152,7 +157,7 @@ export default function BlogPostPage() {
 
             <div 
               className="prose prose-lg max-w-none"
-              dangerouslySetInnerHTML={{ __html: post.content }}
+              dangerouslySetInnerHTML={{ __html: marked(post.content) }}
             />
 
             {post.tags.length > 0 && (
@@ -172,7 +177,9 @@ export default function BlogPostPage() {
             )}
           </div>
         </div>
-      </article>
+        </article>
+        <Footer />
+      </>
     </>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import AddDroneModal from '@/components/maintainer/AddDroneModal';
 
 interface DroneService {
   id: number;
@@ -27,6 +28,7 @@ export default function AdminDronesPage() {
   const [projects, setProjects] = useState<DroneProject[]>([]);
   const [activeTab, setActiveTab] = useState<'services' | 'projects'>('services');
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState<{ type: 'service' | 'project'; open: boolean }>({ type: 'service', open: false });
 
   useEffect(() => {
     fetchData();
@@ -60,10 +62,16 @@ export default function AdminDronesPage() {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Gestión de Drones</h1>
         <div className="space-x-2">
-          <Button className="bg-blue-600 hover:bg-blue-700">
+          <Button 
+            onClick={() => setShowModal({ type: 'service', open: true })}
+            className="bg-blue-600 hover:bg-blue-700"
+          >
             Nuevo Servicio
           </Button>
-          <Button className="bg-green-600 hover:bg-green-700">
+          <Button 
+            onClick={() => setShowModal({ type: 'project', open: true })}
+            className="bg-green-600 hover:bg-green-700"
+          >
             Nuevo Proyecto
           </Button>
         </div>
@@ -230,6 +238,13 @@ export default function AdminDronesPage() {
           )}
         </div>
       )}
+
+      <AddDroneModal 
+        isOpen={showModal.open}
+        onClose={() => setShowModal({ ...showModal, open: false })}
+        onSuccess={fetchData}
+        type={showModal.type}
+      />
     </div>
   );
 }

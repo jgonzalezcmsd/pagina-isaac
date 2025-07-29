@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { About, ContactForm, Footer, Hero, Projects } from '../components/index';
+import { RecentBlog } from '../components/ui/RecentBlog';
 
 export default function Home() {
 
@@ -31,6 +32,9 @@ export default function Home() {
           </section>
           <section id="projects" className="col w-screen h-full  " >
               <Projects />
+          </section>
+          <section id="blog" className="col w-screen" >
+            <RecentBlog />
           </section>
           <section id="contact" className="col w-screen " >
             <ContactForm />
