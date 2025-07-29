@@ -1,7 +1,63 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Footer } from "@/components/ui/Footer";
 import { Navbar } from "@/components/ui/Navbar";
 
+interface DroneService {
+  id: number;
+  title: string;
+  slug: string;
+  shortDescription?: string;
+  featuredImage?: string;
+  price?: number;
+  duration?: string;
+}
+
+interface DroneProject {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+  location?: string;
+  featuredImage?: string;
+  completedAt?: string;
+  clientName?: string;
+}
+
 export default function DronesPage() {
+  const [services, setServices] = useState<DroneService[]>([]);
+  const [projects, setProjects] = useState<DroneProject[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const [servicesRes, projectsRes] = await Promise.all([
+        fetch('/api/drones/services?active=true&limit=6'),
+        fetch('/api/drones/projects?active=true&limit=6')
+      ]);
+      
+      if (servicesRes.ok) {
+        const servicesData = await servicesRes.json();
+        setServices(servicesData);
+      }
+      
+      if (projectsRes.ok) {
+        const projectsData = await projectsRes.json();
+        setProjects(projectsData);
+      }
+    } catch (error) {
+      console.error('Error fetching drone data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -33,19 +89,64 @@ export default function DronesPage() {
               </p>
             </div>
 
-            <div className="text-center py-16 bg-white rounded-lg">
-              <div className="max-w-md mx-auto">
-                <div className="text-6xl mb-4">🚁</div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                  ¡Servicios en desarrollo!
-                </h3>
-                <p className="text-gray-700">
-                  Estamos perfeccionando nuestros servicios de fotogrametría con
-                  drones para ofrecerte la mejor calidad. ¡Contáctanos para más
-                  información!
-                </p>
+            {loading ? (
+              <div className="flex justify-center py-16">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
               </div>
-            </div>
+            ) : services.length > 0 ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {services.map((service) => (
+                  <div key={service.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    {service.featuredImage && (
+                      <div className="relative h-48">
+                        <Image
+                          src={service.featuredImage}
+                          alt={service.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                        {service.title}
+                      </h3>
+                      {service.shortDescription && (
+                        <p className="text-gray-600 mb-4 line-clamp-3">
+                          {service.shortDescription}
+                        </p>
+                      )}
+                      <div className="flex items-center justify-between">
+                        {service.price && (
+                          <span className="text-lg font-bold text-blue-600">
+                            ${service.price.toLocaleString()}
+                          </span>
+                        )}
+                        {service.duration && (
+                          <span className="text-sm text-gray-500">
+                            {service.duration}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-16 bg-white rounded-lg">
+                <div className="max-w-md mx-auto">
+                  <div className="text-6xl mb-4">🚁</div>
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                    ¡Servicios en desarrollo!
+                  </h3>
+                  <p className="text-gray-700">
+                    Estamos perfeccionando nuestros servicios de fotogrametría con
+                    drones para ofrecerte la mejor calidad. ¡Contáctanos para más
+                    información!
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
@@ -62,19 +163,65 @@ export default function DronesPage() {
               </p>
             </div>
 
-            <div className="text-center py-16 bg-white rounded-lg">
-              <div className="max-w-md mx-auto">
-                <div className="text-6xl mb-4">🏗️</div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                  ¡Proyectos espectaculares en camino!
-                </h3>
-                <p className="text-gray-700">
-                  Estamos documentando nuestros mejores trabajos de
-                  fotogrametría aérea. Pronto podrás ver casos de éxito
-                  increíbles.
-                </p>
+            {loading ? (
+              <div className="flex justify-center py-16">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
               </div>
-            </div>
+            ) : projects.length > 0 ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {projects.map((project) => (
+                  <div key={project.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    {project.featuredImage && (
+                      <div className="relative h-48">
+                        <Image
+                          src={project.featuredImage}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-600 mb-4 line-clamp-3">
+                        {project.description}
+                      </p>
+                      <div className="flex items-center justify-between text-sm text-gray-500">
+                        {project.location && (
+                          <span>📍 {project.location}</span>
+                        )}
+                        {project.completedAt && (
+                          <span>
+                            {new Date(project.completedAt).toLocaleDateString('es-ES')}
+                          </span>
+                        )}
+                      </div>
+                      {project.clientName && (
+                        <div className="mt-2 text-sm text-gray-600">
+                          Cliente: {project.clientName}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-16 bg-white rounded-lg">
+                <div className="max-w-md mx-auto">
+                  <div className="text-6xl mb-4">🏗️</div>
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                    ¡Proyectos espectaculares en camino!
+                  </h3>
+                  <p className="text-gray-700">
+                    Estamos documentando nuestros mejores trabajos de
+                    fotogrametría aérea. Pronto podrás ver casos de éxito
+                    increíbles.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
