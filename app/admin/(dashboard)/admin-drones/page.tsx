@@ -53,6 +53,82 @@ export default function AdminDronesPage() {
     }
   };
 
+  const toggleServiceActive = async (id: number, isActive: boolean) => {
+    try {
+      const service = services.find(s => s.id === id);
+      if (!service) return;
+
+      const response = await fetch(`/api/drones/services/${service.slug}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ isActive: !isActive })
+      });
+
+      if (response.ok) {
+        fetchData();
+      }
+    } catch (error) {
+      console.error('Error updating service:', error);
+    }
+  };
+
+  const deleteService = async (id: number) => {
+    if (!confirm('¿Estás seguro de eliminar este servicio?')) return;
+
+    try {
+      const service = services.find(s => s.id === id);
+      if (!service) return;
+
+      const response = await fetch(`/api/drones/services/${service.slug}`, {
+        method: 'DELETE'
+      });
+
+      if (response.ok) {
+        fetchData();
+      }
+    } catch (error) {
+      console.error('Error deleting service:', error);
+    }
+  };
+
+  const toggleProjectActive = async (id: number, isActive: boolean) => {
+    try {
+      const project = projects.find(p => p.id === id);
+      if (!project) return;
+
+      const response = await fetch(`/api/drones/projects/${project.slug}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ isActive: !isActive })
+      });
+
+      if (response.ok) {
+        fetchData();
+      }
+    } catch (error) {
+      console.error('Error updating project:', error);
+    }
+  };
+
+  const deleteProject = async (id: number) => {
+    if (!confirm('¿Estás seguro de eliminar este proyecto?')) return;
+
+    try {
+      const project = projects.find(p => p.id === id);
+      if (!project) return;
+
+      const response = await fetch(`/api/drones/projects/${project.slug}`, {
+        method: 'DELETE'
+      });
+
+      if (response.ok) {
+        fetchData();
+      }
+    } catch (error) {
+      console.error('Error deleting project:', error);
+    }
+  };
+
   if (loading) {
     return <div className="flex justify-center p-8">Cargando...</div>;
   }
@@ -150,8 +226,18 @@ export default function AdminDronesPage() {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                    <button className="text-blue-600 hover:text-blue-900">Editar</button>
-                    <button className="text-red-600 hover:text-red-900">Eliminar</button>
+                    <button 
+                      onClick={() => toggleServiceActive(service.id, service.isActive)}
+                      className="text-green-600 hover:text-green-900"
+                    >
+                      {service.isActive ? 'Desactivar' : 'Activar'}
+                    </button>
+                    <button 
+                      onClick={() => deleteService(service.id)}
+                      className="text-red-600 hover:text-red-900"
+                    >
+                      Eliminar
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -222,8 +308,18 @@ export default function AdminDronesPage() {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                    <button className="text-blue-600 hover:text-blue-900">Editar</button>
-                    <button className="text-red-600 hover:text-red-900">Eliminar</button>
+                    <button 
+                      onClick={() => toggleProjectActive(project.id, project.isActive)}
+                      className="text-green-600 hover:text-green-900"
+                    >
+                      {project.isActive ? 'Desactivar' : 'Activar'}
+                    </button>
+                    <button 
+                      onClick={() => deleteProject(project.id)}
+                      className="text-red-600 hover:text-red-900"
+                    >
+                      Eliminar
+                    </button>
                   </td>
                 </tr>
               ))}

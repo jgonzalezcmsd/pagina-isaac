@@ -17,6 +17,7 @@ export default function AdminBlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
 
   useEffect(() => {
     fetchPosts();
@@ -129,7 +130,10 @@ export default function AdminBlogPage() {
                   }
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                  <button className="text-blue-600 hover:text-blue-900">
+                  <button 
+                    onClick={() => setEditingPost(post)}
+                    className="text-blue-600 hover:text-blue-900"
+                  >
                     Editar
                   </button>
                   <button 
@@ -163,6 +167,33 @@ export default function AdminBlogPage() {
         onClose={() => setShowModal(false)}
         onSuccess={fetchPosts}
       />
+      
+      {editingPost && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg max-w-md w-full mx-4">
+            <h3 className="text-lg font-semibold mb-4">Editar Artículo</h3>
+            <p className="text-gray-600 mb-4">Funcionalidad de edición completa próximamente.</p>
+            <p className="text-sm text-gray-500 mb-4">Por ahora puedes cambiar el estado de publicación o eliminar el artículo.</p>
+            <div className="flex space-x-2">
+              <button 
+                onClick={() => {
+                  togglePublished(editingPost.id, editingPost.published);
+                  setEditingPost(null);
+                }}
+                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+              >
+                {editingPost.published ? 'Despublicar' : 'Publicar'}
+              </button>
+              <button 
+                onClick={() => setEditingPost(null)}
+                className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
