@@ -1,5 +1,5 @@
-import { Navbar } from '@/components/ui/Navbar';
-import { Footer } from '@/components/ui/Footer';
+
+import { Footer, Navbar } from '@/components';
 import localFont from 'next/font/local';
 
 export default function DronesLayout({
