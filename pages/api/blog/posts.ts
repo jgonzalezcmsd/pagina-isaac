@@ -33,7 +33,7 @@ async function getPosts(req: NextApiRequest, res: NextApiResponse) {
         categories: true,
         tags: true,
       },
-      orderBy: { publishedAt: 'desc' },
+      orderBy: { createdAt: 'desc' },
       take,
       skip,
     });
@@ -65,12 +65,16 @@ async function createPost(req: NextApiRequest, res: NextApiResponse) {
         keywords,
         published,
         publishedAt: published ? new Date() : null,
-        categories: {
-          connect: categories?.map((id: number) => ({ id })) || []
-        },
-        tags: {
-          connect: tags?.map((id: number) => ({ id })) || []
-        }
+        ...(categories && categories.length > 0 && {
+          categories: {
+            connect: categories.map((id: number) => ({ id }))
+          }
+        }),
+        ...(tags && tags.length > 0 && {
+          tags: {
+            connect: tags.map((id: number) => ({ id }))
+          }
+        })
       },
       include: {
         categories: true,

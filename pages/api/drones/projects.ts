@@ -28,7 +28,7 @@ async function getProjects(req: NextApiRequest, res: NextApiResponse) {
       where,
       orderBy: [
         { featured: 'desc' },
-        { completedAt: 'desc' }
+        { createdAt: 'desc' }
       ],
       take,
     });

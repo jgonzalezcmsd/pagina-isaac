@@ -48,7 +48,7 @@ export default function BlogPage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-white pt-20">
+      <div className="min-h-screen bg-gray-50 pt-20">
       <div className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -61,7 +61,7 @@ export default function BlogPage() {
         </div>
 
         {posts.length === 0 ? (
-          <div className="text-center py-16 bg-gray-50 rounded-lg">
+          <div className="text-center py-16 bg-white rounded-lg">
             <div className="max-w-md mx-auto">
               <div className="text-6xl mb-4">📝</div>
               <h3 className="text-2xl font-semibold text-gray-900 mb-2">¡Próximamente contenido increíble!</h3>
