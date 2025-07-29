@@ -108,8 +108,7 @@ export default function BlogPostPage() {
         />
       </Head>
       
-      <>
-        <article className="min-h-screen bg-white">
+      <article className="min-h-screen bg-white">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
@@ -174,7 +173,7 @@ export default function BlogPostPage() {
             )}
           </div>
         </div>
-        </article>
-      </>
+      </article>
+    </>
   );
 }
