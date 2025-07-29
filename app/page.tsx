@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { About, ContactForm, Footer, Hero, Projects } from '../components/index';
+import { About, ContactForm, Hero, Projects } from '../components/index';
 import { RecentBlog } from '../components/ui/RecentBlog';
 
 export default function Home() {
@@ -42,9 +42,6 @@ export default function Home() {
           </section>
           
         </main>
-        <section id="footer" className="col w-screen " >                        
-            <Footer />
-          </section>
       </div>
     </div>
     

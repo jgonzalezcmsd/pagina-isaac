@@ -5,8 +5,6 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import Head from 'next/head';
-import { Navbar } from '@/components/ui/Navbar';
-import { Footer } from '@/components/ui/Footer';
 import { marked } from 'marked';
 
 interface BlogPost {
@@ -111,8 +109,7 @@ export default function BlogPostPage() {
       </Head>
       
       <>
-        <Navbar />
-        <article className="min-h-screen bg-white pt-20">
+        <article className="min-h-screen bg-white">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
@@ -178,8 +175,6 @@ export default function BlogPostPage() {
           </div>
         </div>
         </article>
-        <Footer />
       </>
-    </>
   );
 }

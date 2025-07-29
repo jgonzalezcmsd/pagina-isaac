@@ -3,8 +3,6 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Navbar } from '@/components/ui/Navbar';
-import { Footer } from '@/components/ui/Footer';
 import CotizacionModal from '@/components/ui/CotizacionModal';
 
 interface DroneService {
@@ -68,8 +66,7 @@ export default function DronesPage() {
 
   return (
     <>
-      <Navbar />
-      <div className="min-h-screen bg-gray-50 pt-20">
+      <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4 text-center">
@@ -248,8 +245,6 @@ export default function DronesPage() {
         isOpen={showCotizacion}
         onClose={() => setShowCotizacion(false)}
       />
-      
-      <Footer />
     </>
   );
 }
