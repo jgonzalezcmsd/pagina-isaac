@@ -7,12 +7,18 @@ const dev = process.env.NODE_ENV !== 'production';
 const hostname = 'projectbim.cl';
 const port = 3000;
 
+// ✅ Rutas a los certificados de Let's Encrypt
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/projectbim.cl/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/projectbim.cl/fullchain.pem'),
+};
 
 const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
-  https.createServer( async (req, res) => {
+  // ✅ Pasar 'options' al createServer y luego la función de manejo
+  https.createServer(options, async (req, res) => {
     try {
       const parsedUrl = parse(req.url, true);
       const { pathname, query } = parsedUrl;
@@ -27,9 +33,9 @@ app.prepare().then(() => {
     } catch (err) {
       console.error('Error occurred handling', req.url, err);
       res.statusCode = 500;
-      res.end('internal server error');
+      res.end('Internal Server Error');
     }
-  }).listen(port, () => {
+  }).listen(port, '0.0.0.0', () => {
     console.log(`> Ready on https://${hostname}:${port}`);
   });
 });
