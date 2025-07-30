@@ -5,19 +5,14 @@ const next = require('next');
 
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = 'projectbim.cl';
-const port = 443;
+const port = 3000;
 
-const options = {
-  key: fs.readFileSync('/etc/letsencrypt/live/projectbim.cl/privkey.pem'), // Clave privada ECDSA
-  cert: fs.readFileSync('/etc/letsencrypt/live/projectbim.cl/fullchain.pem'), // fullchain incluye cert + intermediarios
-  // No necesitas especificar 'ca' aparte si usas fullchain.pem
-};
 
 const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
-  https.createServer(options, async (req, res) => {
+  https.createServer( async (req, res) => {
     try {
       const parsedUrl = parse(req.url, true);
       const { pathname, query } = parsedUrl;
